@@ -335,7 +335,7 @@ renderPrint <- function(expr, env = parent.frame(), quoted = FALSE,
         function(err) { cat(file=stderr(), "ERROR", err$message) }
       )
     })
-    p1 <- finally(p1, ~close(domain$conn))
+    p1 <- promise::finally(p1, ~close(domain$conn))
     p1
   }
 
@@ -345,7 +345,7 @@ renderPrint <- function(expr, env = parent.frame(), quoted = FALSE,
 createRenderPrintPromiseDomain <- function(width) {
   f <- file()
 
-  new_promise_domain(
+  promise::new_promise_domain(
     wrapOnFulfilled = function(onFulfilled) {
       force(onFulfilled)
       function(...) {
