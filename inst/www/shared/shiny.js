@@ -4924,6 +4924,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           return xhrVal;
         },
         data: file,
+        contentType: 'application/octet-stream',
         processData: false,
         success: function success() {
           self.progressBytes += file.size;
